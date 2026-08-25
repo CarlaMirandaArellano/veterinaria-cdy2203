@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso de Personal</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h2 style="text-align:center; border-bottom:none;">🔐 Acceso de Personal</h2>
+
+        <div th:if="${param.error}" class="alert">
+            Credenciales incorrectas. Verifique usuario o clave.
+        </div>
+
+        <div th:if="${param.logout}" class="alert alert-success">
+            Sesión finalizada exitosamente.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <label>Usuario:</label>
+            <input type="text" name="username" placeholder="admin, veterinario o asistente" required />
+
+            <input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+            <label>Contraseña:</label>
+            <input type="password" name="password" placeholder="Contraseña" required />
+
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Pacientes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Pacientes</h1>
+
+        <nav>
+            <a th:href="@{/home}">🏠 Inicio</a>
+            <a th:href="@{/pacientes}">🐾 Pacientes</a>
+            <a th:href="@{/citas}">📅 Citas</a>
+        </nav>
+
+        <h2>Registrar Nuevo Paciente</h2>
+        <form th:action="@{/pacientes/guardar}" th:object="${nuevoPaciente}" method="post">
+            <input type="text" th:field="*{nombre}" placeholder="Nombre de la mascota" required />
+            <input type="text" th:field="*{especie}" placeholder="Especie (Perro, Gato, etc.)" required />
+            <input type="text" th:field="*{raza}" placeholder="Raza" required />
+            <input type="number" th:field="*{edad}" placeholder="Edad (años)" required min="0" />
+            <input type="text" th:field="*{dueno}" placeholder="Nombre del dueño" required />
+            <input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <button type="submit">Guardar Paciente</button>
+        </form>
+
+        <h2>Listado de Pacientes</h2>
+        <p class="empty-state" th:if="${#lists.isEmpty(pacientes)}">Aún no hay pacientes registrados.</p>
+        <div class="cards-grid">
+            <div class="card" th:each="p : ${pacientes}">
+                <div class="card-header">
+                    <span class="card-icon">🐾</span>
+                    <h3 th:text="${p.nombre}"></h3>
+                </div>
+                <ul class="card-body">
+                    <li><strong>Especie:</strong> <span th:text="${p.especie}"></span></li>
+                    <li><strong>Raza:</strong> <span th:text="${p.raza}"></span></li>
+                    <li><strong>Edad:</strong> <span th:text="${p.edad} + ' años'"></span></li>
+                    <li><strong>Dueño:</strong> <span th:text="${p.dueno}"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

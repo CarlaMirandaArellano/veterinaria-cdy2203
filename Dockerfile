@@ -1,0 +1,8 @@
+FROM mysql:8.0
+
+ENV MYSQL_ROOT_PASSWORD=rootpassword
+ENV MYSQL_DATABASE=veterinaria_db
+ENV MYSQL_USER=vetuser
+ENV MYSQL_PASSWORD=vetpassword
+
+EXPOSE 3306

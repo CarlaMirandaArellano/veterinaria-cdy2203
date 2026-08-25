@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Programación de Citas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Programación de Citas</h1>
+
+        <nav>
+            <a th:href="@{/home}">🏠 Inicio</a>
+            <a th:href="@{/pacientes}">🐾 Pacientes</a>
+            <a th:href="@{/citas}">📅 Citas</a>
+        </nav>
+
+        <h2>Agendar Consulta Médica</h2>
+        <form th:action="@{/citas/guardar}" th:object="${nuevaCita}" method="post">
+            <input type="text" th:field="*{nombrePaciente}" placeholder="Nombre del paciente" required />
+            <input type="date" th:field="*{fecha}" required />
+            <input type="time" th:field="*{hora}" required />
+            <input type="text" th:field="*{motivo}" placeholder="Motivo de la consulta" required />
+            <input type="text" th:field="*{veterinario}" placeholder="Veterinario asignado" required />
+            <input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <button type="submit">Agendar Cita</button>
+        </form>
+
+        <h2>Citas Programadas</h2>
+        <p class="empty-state" th:if="${#lists.isEmpty(citas)}">Aún no hay citas programadas.</p>
+        <div class="cards-grid">
+            <div class="card" th:each="c : ${citas}">
+                <div class="card-header">
+                    <span class="card-icon">📅</span>
+                    <h3 th:text="${c.nombrePaciente}"></h3>
+                </div>
+                <ul class="card-body">
+                    <li><strong>Fecha:</strong> <span th:text="${c.fecha}"></span></li>
+                    <li><strong>Hora:</strong> <span th:text="${c.hora}"></span></li>
+                    <li><strong>Motivo:</strong> <span th:text="${c.motivo}"></span></li>
+                    <li><strong>Veterinario:</strong> <span th:text="${c.veterinario}"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

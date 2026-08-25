@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Principal</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Panel de Administración</h1>
+
+        <nav>
+            <a th:href="@{/home}">🏠 Inicio</a>
+            <a th:href="@{/pacientes}">🐾 Gestión de Pacientes</a>
+            <a th:href="@{/citas}">📅 Programación de Citas</a>
+        </nav>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <p>Seleccione un módulo del menú para administrar la información del centro.</p>
+
+            <form th:action="@{/logout}" method="post" style="margin-top: 25px;">
+                <button type="submit" class="btn-logout">🚪 Cerrar Sesión</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clínica Veterinaria</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container" style="text-align: center;">
+        <h1>Sistema de Gestión Veterinaria</h1>
+        <p>Bienvenido al portal institucional de atención y gestión médica para mascotas.</p>
+
+        <div style="margin-top: 30px;">
+            <a th:href="@{/login}" class="btn-primary" style="display:inline-block; text-decoration:none; padding: 12px 26px;">
+                Ingresar al Sistema
+            </a>
+        </div>
+
+        <h2 style="text-align:center;">Usuarios de prueba</h2>
+        <div class="cards-grid" style="text-align: left;">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">👑</span>
+                    <h3>Administrador</h3>
+                </div>
+                <ul class="card-body">
+                    <li><strong>Usuario:</strong> admin</li>
+                    <li><strong>Contraseña:</strong> Admin#2026</li>
+                    <li><strong>Acceso:</strong> Pacientes y Citas</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🩺</span>
+                    <h3>Veterinario</h3>
+                </div>
+                <ul class="card-body">
+                    <li><strong>Usuario:</strong> veterinario</li>
+                    <li><strong>Contraseña:</strong> Vet#2026</li>
+                    <li><strong>Acceso:</strong> Citas</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🧑‍💼</span>
+                    <h3>Asistente</h3>
+                </div>
+                <ul class="card-body">
+                    <li><strong>Usuario:</strong> asistente</li>
+                    <li><strong>Contraseña:</strong> Asist#2026</li>
+                    <li><strong>Acceso:</strong> Pacientes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
